@@ -1,0 +1,38 @@
+[
+  {
+    "service_name": "Vintage",
+    "service_description": "Vintage photography is a broad category. It's not typified by any one technology or technique. It includes every kind of analog photography, from century-old cameras that could live in a museum to cameras that once used Kodachrome and even film cameras from the early 2000s.",
+    "service_img": "https://i.ibb.co/6v8q0By/pexels-pixabay-247929.jpg",
+    "price" : "$499"
+  },
+  {
+    "service_name": "Nature",
+    "service_description": "Nature photography is a wide range of photography taken outdoors and devoted to displaying natural elements such as landscapes, wildlife, plants, and close-ups of natural scenes and textures. Nature photography tends to put a stronger emphasis on the aesthetic value of the photo than other photography genres, such as photojournalism and documentary photography.",
+    "service_img": "https://i.ibb.co/g96GBHv/ashim-d-silva-162286.jpg",
+    "price" : "$599"
+  },
+  {
+    "service_name": "Still life",
+    "service_description": "Still life photography encompasses everything that is an inanimate subject in front of a camera. But a successful still life? That's a little harder to classify. It all comes down to intent and context. Is your message conveyed? Is your composition strong, and does it guide the viewer's eye through the image? Does your still life convey a narrative? It's by asking these deeper questions that we can understand whether a photograph is successful.",
+    "service_img": "https://i.ibb.co/CMT8gyg/photo-1539705071986-9764bdbe7480-1024x619.jpg",
+    "price" : "$999"
+  },
+  {
+    "service_name": "Editorial",
+    "service_description": "Editorial photography is nor restrained by brand image like commercial photography. Nor does it depend on the unpredictable nature of street photography. Editorial photography allows photographers to use every tool at their disposal to create an image that tells a story",
+    "service_img": "https://i.ibb.co/L5KQbCQ/angel-jimenez-168185.jpg",
+    "price" : "$1599"
+  },
+  {
+    "service_name": "Portrait",
+    "service_description": "Portrait photography, or portraiture, is a type of photography aimed toward capturing the personality of a person or group of people by using effective lighting, backdrops, and poses.[1] A portrait photograph may be artistic or clinical. Frequently, portraits are commissioned for special occasions, such as weddings, school events, or commercial purposes. Portraits can serve many purposes, ranging from usage on a personal web site to display in the lobby of a business.",
+    "service_img": "https://i.ibb.co/jkt001n/sam-burriss-285038.jpg",
+    "price" : "$499"
+  },
+  {
+    "service_name": "Landscape",
+    "service_description": "Landscape photography is the art of capturing pictures of nature and the outdoors in a way that brings your viewer into the scene. From grand landscapes to intimate details, the best photos demonstrate the photographer's own connection to nature and capture the essence of the world around them.",
+    "service_img": "https://i.ibb.co/qJT5x5Z/photo-1549925356-2e1b43cc2353-1024x575.jpg",
+    "price" : "$899"
+  }
+]
