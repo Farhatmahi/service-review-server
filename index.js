@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+var jwt = require('jsonwebtoken');
 
 const services = require("./services.json");
 
@@ -28,7 +29,31 @@ const run = async () => {
   try {
     const serviceCollection = client.db("sarah-mcconor").collection("services");
     const blogsCollection = client.db("sarah-mcconor").collection("blogs");
+    const reviewCollection = client.db("sarah-mcconor").collection("reviews");
 
+    //review
+    app.post('/reviews', async(req, res) => {
+      const review = req.body;
+      const result = await reviewCollection.insertOne(review)
+      res.send(result)
+    })
+
+    app.get('/reviews', async(req, res) => {
+      const query = {}
+      const cursor = reviewCollection.find(query)
+      const reviews = await cursor.toArray()
+      res.send(reviews)
+    })
+
+    //jwt
+    app.post('/jwt', (req, res) => {
+      const user = req.body;
+      console.log(user)
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn : '1h'})
+      res.send({token})
+    })
+
+    //blog
     app.get("/blogs", async(req, res) => {
       const query = {}
       const cursor = blogsCollection.find(query)
@@ -36,6 +61,7 @@ const run = async () => {
       res.send(blogs)
     })
 
+    //services
     app.get("/services", async (req, res) => {
       const query = {};
       const cursor = serviceCollection.find(query);
