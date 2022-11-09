@@ -27,6 +27,14 @@ const client = new MongoClient(uri, {
 const run = async () => {
   try {
     const serviceCollection = client.db("sarah-mcconor").collection("services");
+    const blogsCollection = client.db("sarah-mcconor").collection("blogs");
+
+    app.get("/blogs", async(req, res) => {
+      const query = {}
+      const cursor = blogsCollection.find(query)
+      const blogs = await cursor.toArray()
+      res.send(blogs)
+    })
 
     app.get("/services", async (req, res) => {
       const query = {};
