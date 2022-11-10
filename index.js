@@ -25,6 +25,24 @@ const client = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,
 });
 
+
+const verifyJwt = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if(!authHeader){
+    return res.status(401).send({message : "unauthorized"})
+  }
+  const token = authHeader.split(' ')[1]
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+    if(err){
+      return res.status(401).send({message : "unauthorized"})
+    }
+    req.decoded = decoded;
+    next();
+  })
+}
+
+
+
 const run = async () => {
   try {
     const serviceCollection = client.db("sarah-mcconor").collection("services");
@@ -40,13 +58,19 @@ const run = async () => {
 
     app.delete('/reviews/:id', async(req, res) => {
       const id = req.params.id
+      // console.log(id)
       const query = { _id : ObjectId(id)}
+      
       const result = await reviewCollection.deleteOne(query)
       res.send(result)
     })
 
     app.get('/reviews', async(req, res) => {
-      // console.log(req.query)
+      // console.log(req.headers.authorization)
+      const decoded = req.decoded;
+      console.log(decoded)
+
+
       let query = {}
       if(req.query.service){
         query = {
@@ -68,8 +92,9 @@ const run = async () => {
     //jwt
     app.post('/jwt', (req, res) => {
       const user = req.body;
-      console.log(user)
+      // console.log(user)
       const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn : '1h'})
+      // console.log({token})
       res.send({token})
     })
 
@@ -91,7 +116,7 @@ const run = async () => {
 
     app.post('/services', async(req, res) => {
       const service = req.body;
-      console.log(service)
+      // console.log(service)
       const result = await serviceCollection.insertOne(service)
       res.send(result)
     })
