@@ -46,17 +46,24 @@ const run = async () => {
     })
 
     app.get('/reviews', async(req, res) => {
+      // console.log(req.query)
       let query = {}
-      console.log(req.query.service)
       if(req.query.service){
         query = {
           service : req.query.service
+        }
+      }
+      if(req.query.email){
+        query = {
+          email : req.query.email
         }
       }
       const cursor = reviewCollection.find(query)
       const reviews = await cursor.toArray()
       res.send(reviews)
     })
+
+
 
     //jwt
     app.post('/jwt', (req, res) => {
@@ -81,6 +88,13 @@ const run = async () => {
       const services = await cursor.limit(3).toArray();
       res.send(services);
     });
+
+    app.post('/services', async(req, res) => {
+      const service = req.body;
+      console.log(service)
+      const result = await serviceCollection.insertOne(service)
+      res.send(result)
+    })
 
     app.get("/all-services", async (req, res) => {
         const query = {};
